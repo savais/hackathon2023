@@ -77,6 +77,8 @@ export class PacketsController
     }
 
     @Get(":id/file")
+    @ApiOperation({summary: "Get packet file with id"})
+    @ApiOkResponse({description: "Found image succesfully", type: StreamableFile})
     async getFile(@Param("id") id: number): Promise<StreamableFile>
     {
         return await this.packetsService.getPacketFile(id, UPLOAD_DIR);
