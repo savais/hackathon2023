@@ -1,4 +1,4 @@
-import { Packet } from "./packet.entity";
+import { Packet } from "../../packets/entities/packet.entity";
 
 export class ProductFamily {
     id: number;
