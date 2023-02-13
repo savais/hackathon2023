@@ -1,6 +1,7 @@
-import { Column, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { ProductFamily } from "../../product-families/entities/product-family.entity";
 
+@Entity()
 export class Packet {
 
     @PrimaryGeneratedColumn()
