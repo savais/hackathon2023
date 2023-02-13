@@ -3,6 +3,7 @@ import { UploadedFile } from '@nestjs/common/decorators';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiNotFoundResponse } from '@nestjs/swagger';
 import { ApiCreatedResponse, ApiOkResponse, ApiOperation } from '@nestjs/swagger/dist';
+import { diskStorage } from 'multer';
 import { CreatePacketDto } from './dto/create-packet.dto';
 import { GetPacketsDto } from './dto/get-packets.dto';
 import { UpdatePacketDto } from './dto/update-packet.dto';
@@ -35,13 +36,16 @@ export class PacketsController {
     @ApiOperation({summary: "Add new packet"})
     @ApiCreatedResponse({type: Packet})
     @UseInterceptors(FileInterceptor("packet", {
-        dest: "./uploads"
+        storage: diskStorage({
+            destination: "./uploads"
+        })
     }))
     async postPacket(
         @Body() createPacketDto: CreatePacketDto,
         @UploadedFile() packet: Express.Multer.File
     ): Promise<Packet> {
         createPacketDto.packet = packet;
+        console.log(packet)
         return await this.packetsService.postPacket(createPacketDto);
     }
 

@@ -23,9 +23,16 @@ export class PacketsService {
     }
 
     async postPacket(createPacketDto: CreatePacketDto): Promise<Packet> {
-        //this.productTypeService.getWithName();
-        this.packetRepository.save(createPacketDto)
-        return null;
+        const productType = await this.productTypeService.getProductTypeByName(createPacketDto.type);
+        const packet: Partial<Packet> = {};
+
+        packet.name = createPacketDto.name;
+        packet.description = createPacketDto.description;
+        packet.version = createPacketDto.version;
+        packet.productType = productType;
+        packet.path = createPacketDto.packet.filename;
+
+        return await this.packetRepository.save(packet)
     }
 
     async removePacket(id: number): Promise<Packet> {
