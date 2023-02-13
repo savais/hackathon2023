@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Param, Post, Delete, Patch } from '@nestjs/common';
 import { ApiNotFoundResponse } from '@nestjs/swagger';
 import { ApiCreatedResponse, ApiOkResponse, ApiOperation } from '@nestjs/swagger/dist';
-import { CreatePacketDto } from './dto/create-packe.dto';
+import { CreatePacketDto } from './dto/create-packet.dto';
 import { GetPacketsDto } from './dto/get-packets.dto';
 import { UpdatePacketDto } from './dto/update-packet.dto';
 import { Packet } from './entities/packet.entity';
@@ -48,6 +48,8 @@ export class PacketsController {
     }
 
     @Patch(":id")
+    @ApiOperation({summary: "Edit packet with id"})
+    @ApiOkResponse({description: "Packet edit succesfull", type: Packet})
     async editPacket(
         @Param("id") id: number,
         @Body() dto: UpdatePacketDto
