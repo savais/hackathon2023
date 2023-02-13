@@ -1,7 +1,10 @@
-@font-face {font-family: myFirstFont;   src: url(sansation_light.woff); }  div {   font-family: myFirstFont; }
+@font-face {font-family: myriad;   src: url(/assets/fonts/Myriad\ Pro\ Regular.ttf); } 
+@font-face {font-family: proxima;   src: url(/assets/fonts/ProximaNova-Regular.otf); } 
+
+body {   font-family: proxima; }
   
   :host {
-    font-family: Proxima Nova;
+    font-family: proxima;
     font-size: 14px;
     color: #414141;
     box-sizing: border-box;
@@ -16,7 +19,7 @@
   h5,
   h6 {
     margin: 8px 0;
-    font-family: Myriad Pro;
+    font-family: myriad;
   }
 
   p {
