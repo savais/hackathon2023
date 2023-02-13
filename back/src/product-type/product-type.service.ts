@@ -28,4 +28,8 @@ export class ProductTypeService {
 
         return await this.productTypesRepository.save(productType)
     }
+
+    async getProductTypeById(id: number):Promise<ProductType> {
+        return await this.productTypesRepository.findOne({where: {id: id}, relations: ['productFamily', 'packets']})
+    }
 }

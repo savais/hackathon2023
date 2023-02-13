@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { CreateProductTypeDto } from './dto/create-product-type.dto';
 import { ProductType } from './entities/product-type.entity';
 import { ProductTypeService } from './product-type.service';
@@ -16,4 +16,19 @@ export class ProductTypeController {
     async postProductType(@Body() createProductTypeDto: CreateProductTypeDto): Promise<ProductType> {
         return await this.productTypeService.insertProductType(createProductTypeDto)
     }
+
+    @Get(':id')
+    async getProductTypeById(@Param() params): Promise<ProductType> {
+        return await this.productTypeService.getProductTypeById(params.id)
+    }
+
+    // @Patch(':id')
+    // async updateProductTypeById(@Param() params, @Body() updateProductType: UpdateProductTypeDto): Promise<ProductType> {
+    //     return await this.productTypeService.updateProductById(params.id, updateProductType)
+    // }
+
+    // @Delete(':id')
+    // async deleteProductById(@Param() params) {
+    //     return await this.productTypeService.deleteProductById(params.id)
+    // }
 }
