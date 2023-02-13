@@ -8,7 +8,7 @@ export class User {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ApiProperty({example: 'kuvaaja01', description: 'username of the user'})
+    @ApiProperty({example: 'kuvaaja01', description: 'name of the user'})
     @Column()
     name: string;
 
@@ -16,7 +16,7 @@ export class User {
     @Column()
     email: string;
 
-    // TODO: Needs to be switched for a salted hash
+    // TODO: Needs to be replaced with a salted hash
     @ApiProperty({example: 'salasana123', description: 'password of the user'})
     @Column()
     password: string;

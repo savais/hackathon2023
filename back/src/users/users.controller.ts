@@ -30,7 +30,7 @@ export class UsersController {
 
     constructor(private usersService: UsersService) {}
 
-    @Post('/first')
+    @Post('first')
     @HttpCode(201)
     @ApiOperation({ summary: 'Create the first user with an embedded profile without authcheck' })
     @ApiResponse({
