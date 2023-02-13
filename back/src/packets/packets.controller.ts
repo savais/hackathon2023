@@ -34,7 +34,9 @@ export class PacketsController {
     @Post()
     @ApiOperation({summary: "Add new packet"})
     @ApiCreatedResponse({type: Packet})
-    @UseInterceptors(FileInterceptor("packet"))
+    @UseInterceptors(FileInterceptor("packet", {
+        dest: "./uploads"
+    }))
     async postPacket(
         @Body() createPacketDto: CreatePacketDto,
         @UploadedFile() packet: Express.Multer.File
