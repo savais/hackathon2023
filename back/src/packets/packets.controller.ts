@@ -1,14 +1,18 @@
-import { Body, Controller, Get, Param, Post, Delete, Patch, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Delete, Patch, UseInterceptors, StreamableFile } from '@nestjs/common';
 import { UploadedFile } from '@nestjs/common/decorators';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiNotFoundResponse } from '@nestjs/swagger';
 import { ApiCreatedResponse, ApiOkResponse, ApiOperation } from '@nestjs/swagger/dist';
+import { createReadStream } from 'fs';
 import { diskStorage } from 'multer';
+import { join } from 'path';
 import { CreatePacketDto } from './dto/create-packet.dto';
 import { GetPacketsDto } from './dto/get-packets.dto';
 import { UpdatePacketDto } from './dto/update-packet.dto';
 import { Packet } from './entities/packet.entity';
 import { PacketsService } from './packets.service';
+
+const UPLOAD_DIR = "../uploads";
 
 @Controller('packets')
 export class PacketsController {
@@ -37,7 +41,7 @@ export class PacketsController {
     @ApiCreatedResponse({type: Packet})
     @UseInterceptors(FileInterceptor("packet", {
         storage: diskStorage({
-            destination: "./uploads"
+            destination: UPLOAD_DIR
         })
     }))
     async postPacket(
@@ -66,6 +70,11 @@ export class PacketsController {
         @Body() dto: UpdatePacketDto
     ): Promise<Packet> {
         return await this.packetsService.editPacket(id, dto);
+    }
+
+    @Get(":id/file")
+    getFile(@Param("id") id: string): StreamableFile {
+        return this.packetsService.getPacketFile(join(UPLOAD_DIR, id));
     }
 
 

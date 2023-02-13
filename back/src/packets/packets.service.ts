@@ -1,5 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, StreamableFile } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { createReadStream } from 'fs';
 import { ProductTypeService } from 'src/product-type/product-type.service';
 import { Repository } from 'typeorm';
 import { CreatePacketDto } from './dto/create-packet.dto';
@@ -41,5 +42,10 @@ export class PacketsService {
 
     async editPacket(id: number, dto: UpdatePacketDto): Promise<Packet> {
         return null
+    }
+
+    getPacketFile(filepath: string): StreamableFile {
+        const file = createReadStream(filepath);
+        return new StreamableFile(file);
     }
 }
