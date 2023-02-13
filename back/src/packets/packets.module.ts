@@ -8,6 +8,5 @@ import { PacketsService } from './packets.service';
   imports:[TypeOrmModule.forFeature([Packet])],
   controllers: [PacketsController],
   providers: [PacketsService],
-  imports: [TypeOrmModule.forFeature([Packet])]
 })
 export class PacketsModule {}
