@@ -3,16 +3,24 @@ import { UploadedFile } from '@nestjs/common/decorators';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiNotFoundResponse } from '@nestjs/swagger';
 import { ApiCreatedResponse, ApiOkResponse, ApiOperation } from '@nestjs/swagger/dist';
+<<<<<<< HEAD
 import { createReadStream } from 'fs';
 import { diskStorage } from 'multer';
 import { join } from 'path';
+=======
+import { diskStorage } from 'multer';
+>>>>>>> f4011fafddd27963d1625008a062bd688fdab74d
 import { CreatePacketDto } from './dto/create-packet.dto';
 import { GetPacketsDto } from './dto/get-packets.dto';
 import { UpdatePacketDto } from './dto/update-packet.dto';
 import { Packet } from './entities/packet.entity';
 import { PacketsService } from './packets.service';
 
+<<<<<<< HEAD
 const UPLOAD_DIR = "../uploads";
+=======
+const UPLOAD_DIR = "./uploads";
+>>>>>>> f4011fafddd27963d1625008a062bd688fdab74d
 
 @Controller('packets')
 export class PacketsController
