@@ -1,7 +1,10 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+<<<<<<< HEAD
 import { ProductFamilyModule } from 'src/product-families/product-families.module';
 import { ProductFamilyService } from 'src/product-families/product-families.service';
+=======
+>>>>>>> 3a911780995b8f137dc1e3c5b139e4d8fd1c334d
 import { ProductType } from './entities/product-type.entity';
 import { ProductTypeController } from './product-type.controller';
 import { ProductTypeService } from './product-type.service';
@@ -12,6 +15,7 @@ import { ProductTypeService } from './product-type.service';
   ],
   controllers: [ProductTypeController],
   providers: [ProductTypeService],
-  exports: [ProductTypeService]
+  exports: [ProductTypeService],
+  imports: [TypeOrmModule.forFeature([ProductType])]
 })
 export class ProductTypeModule {}

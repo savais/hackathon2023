@@ -22,7 +22,4 @@ export class Packet {
 
     @Column()
     path: string;
-
-    @Column()
-    type: string;
 }

@@ -2,6 +2,7 @@ import { Length } from "@nestjs/class-validator";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsString, IsObject } from "class-validator";
 import { ProductFamily } from "src/product-families/entities/product-family.entity";
+import { ProductType } from "src/product-type/entities/product-type.entity";
 
 export class CreatePacketDto {
 
@@ -21,8 +22,8 @@ export class CreatePacketDto {
     version: string;
     
     @ApiProperty({example: ""})
-    @IsObject()
-    type: ProductFamily
+    @IsString()
+    type: string;
 
     @ApiProperty()
     packet: Express.Multer.File;
