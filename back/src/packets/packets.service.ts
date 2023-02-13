@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreatePacketDto } from './dto/create-packet.dto';
 import { UpdatePacketDto } from './dto/update-packet.dto';
 import { Packet } from './entities/packet.entity';
@@ -6,15 +8,20 @@ import { Packet } from './entities/packet.entity';
 @Injectable()
 export class PacketsService {
 
+    constructor(
+        @InjectRepository(Packet) private packetRepository: Repository<Packet>
+    ) {}
+
     async getPackets(): Promise<Packet[]> {
-        return null;
+        return this.packetRepository.find();
     }
 
     async getPacket(id: number): Promise<Packet> {
-        return null;
+        return this.packetRepository.findOneOrFail({where: {id: id}});
     }
 
     async postPacket(createPacketDto: CreatePacketDto): Promise<Packet> {
+        //this.packetRepository.save(createPacketDto)
         return null;
     }
 

@@ -1,4 +1,6 @@
-import { Body, Controller, Get, Param, Post, Delete, Patch } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Delete, Patch, UseInterceptors } from '@nestjs/common';
+import { UploadedFile } from '@nestjs/common/decorators';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiNotFoundResponse } from '@nestjs/swagger';
 import { ApiCreatedResponse, ApiOkResponse, ApiOperation } from '@nestjs/swagger/dist';
 import { CreatePacketDto } from './dto/create-packet.dto';
@@ -32,9 +34,12 @@ export class PacketsController {
     @Post()
     @ApiOperation({summary: "Add new packet"})
     @ApiCreatedResponse({type: Packet})
+    @UseInterceptors(FileInterceptor("packet"))
     async postPacket(
-        @Body() createPacketDto: CreatePacketDto
+        @Body() createPacketDto: CreatePacketDto,
+        @UploadedFile() packet: Express.Multer.File
     ): Promise<Packet> {
+        createPacketDto.packet = packet;
         return await this.packetsService.postPacket(createPacketDto);
     }
 
