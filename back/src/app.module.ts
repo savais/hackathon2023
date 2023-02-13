@@ -7,6 +7,7 @@ import { PacketsModule } from './packets/packets.module';
 import { UsersModule } from './users/users.module';
 import { ProductFamilyModule } from './product-families/product-families.module';
 import { AuthModule } from './auth/auth.module';
+import { ProductTypeModule } from './product-type/product-type.module';
 
 @Module({
   imports: [
@@ -14,7 +15,8 @@ import { AuthModule } from './auth/auth.module';
     PacketsModule, 
     UsersModule, 
     ProductFamilyModule,
-    AuthModule
+    AuthModule,
+    ProductTypeModule
   ],
   controllers: [AppController],
   providers: [AppService],

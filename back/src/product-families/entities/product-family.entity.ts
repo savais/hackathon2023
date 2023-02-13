@@ -15,5 +15,5 @@ export class ProductFamily {
     description: string;
 
     @OneToMany(() => ProductType, (productType) => productType.productFamily)
-    productType: ProductType[]
+    productType?: ProductType[]
 }
