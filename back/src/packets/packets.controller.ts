@@ -68,12 +68,18 @@ export class PacketsController
     @Patch(":id")
     @ApiOperation({ summary: "Edit packet with id" })
     @ApiOkResponse({ description: "Packet edit succesfull", type: Packet })
+    @UseInterceptors(FileInterceptor("packet", {
+        storage: diskStorage({
+            destination: UPLOAD_DIR
+        })
+    }))
     async editPacket(
         @Param("id") id: number,
-        @Body() dto: UpdatePacketDto
+        @Body() dto: UpdatePacketDto,
+        @UploadedFile() packet: Express.Multer.File
     ): Promise<Packet>
     {
-        return await this.packetsService.editPacket(id, dto);
+        return await this.packetsService.editPacket(id, dto, packet, UPLOAD_DIR);
     }
 
     @Get(":id/file")

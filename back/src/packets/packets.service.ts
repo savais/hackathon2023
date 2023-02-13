@@ -1,6 +1,6 @@
 import { Injectable, StreamableFile } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { createReadStream } from 'fs';
+import { createReadStream, rmSync } from 'fs';
 import { join } from 'path';
 import { ProductTypeService } from 'src/product-type/product-type.service';
 import { Repository } from 'typeorm';
@@ -38,11 +38,35 @@ export class PacketsService {
     }
 
     async removePacket(id: number): Promise<Packet> {
-        return null
+        const packet = await this.packetRepository.findOneOrFail({where: {id: id}});
+        return await this.packetRepository.remove(packet);
     }
 
-    async editPacket(id: number, dto: UpdatePacketDto): Promise<Packet> {
-        return null
+    async editPacket(id: number, dto: UpdatePacketDto, packet: Express.Multer.File, fileDir: string): Promise<Packet> {
+        const oldPacket = await this.packetRepository.findOneOrFail({where: {id: id}});
+
+        if(packet) {
+            rmSync(join(fileDir, oldPacket.path));
+            oldPacket.path = packet.filename;
+        }
+
+        if(dto.name) {
+            oldPacket.name = dto.name;
+        }
+
+        if(dto.description) {
+            oldPacket.description = dto.description;
+        }
+
+        if(dto.type) {
+            oldPacket.productType = await this.productTypeService.getProductTypeByName(dto.type);
+        }
+
+        if(dto.version) {
+            oldPacket.version = dto.version;
+        }
+
+        return await this.packetRepository.save(oldPacket);
     }
 
     async getPacketFile(id: number, fileDir: string): Promise<StreamableFile> {
