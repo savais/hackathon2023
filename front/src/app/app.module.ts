@@ -5,14 +5,25 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
 
+import { ListitemComponent } from './listitem/listitem.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
+    ListitemComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MaterialModule
+    MaterialModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
