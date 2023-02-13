@@ -1,4 +1,4 @@
-import { ProductFamily } from "../entities/product-family.entity";
+import { ProductFamily } from "src/product-families/entities/product-family.entity";
 
 export class CreatePacketDto {
     name: string;

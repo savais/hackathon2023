@@ -1,8 +1,9 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Delete, Patch } from '@nestjs/common';
 import { ApiNotFoundResponse } from '@nestjs/swagger';
 import { ApiCreatedResponse, ApiOkResponse, ApiOperation } from '@nestjs/swagger/dist';
 import { CreatePacketDto } from './dto/create-packe.dto';
 import { GetPacketsDto } from './dto/get-packets.dto';
+import { UpdatePacketDto } from './dto/update-packet.dto';
 import { Packet } from './entities/packet.entity';
 import { PacketsService } from './packets.service';
 
@@ -36,5 +37,24 @@ export class PacketsController {
     ): Promise<Packet> {
         return await this.packetsService.postPacket(createPacketDto);
     }
+
+    @Delete(":id")
+    @ApiOperation({summary: "Remove packet with id"})
+    @ApiOkResponse({type: Packet, description: "Removed succesfully"})
+    async deletePacket(
+        @Param("id") id: number
+    ): Promise<Packet> {
+        return await this.packetsService.removePacket(id);
+    }
+
+    @Patch(":id")
+    async editPacket(
+        @Param("id") id: number,
+        @Body() dto: UpdatePacketDto
+    ): Promise<Packet> {
+        return await this.packetsService.editPacket(id, dto);
+    }
+
+
     
 }

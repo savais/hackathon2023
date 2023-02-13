@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CreatePacketDto } from './dto/create-packe.dto';
+import { UpdatePacketDto } from './dto/update-packet.dto';
 import { Packet } from './entities/packet.entity';
 
 @Injectable()
@@ -15,5 +16,13 @@ export class PacketsService {
 
     async postPacket(createPacketDto: CreatePacketDto): Promise<Packet> {
         return null;
+    }
+
+    async removePacket(id: number): Promise<Packet> {
+        return null
+    }
+
+    async editPacket(id: number, dto: UpdatePacketDto): Promise<Packet> {
+        return null
     }
 }
