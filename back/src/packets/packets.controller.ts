@@ -48,6 +48,8 @@ export class PacketsController {
     }
 
     @Patch(":id")
+    @ApiOperation({summary: "Edit packet with id"})
+    @ApiOkResponse({description: "Packet edit succesfull", type: Packet})
     async editPacket(
         @Param("id") id: number,
         @Body() dto: UpdatePacketDto
