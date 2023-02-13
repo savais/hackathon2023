@@ -1,6 +1,6 @@
 import { ProductType } from "src/product-type/entities/product-type.entity";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { ProductFamily } from "../../product-families/entities/product-family.entity";
+
 
 @Entity()
 export class Packet {
