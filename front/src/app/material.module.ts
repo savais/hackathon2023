@@ -1,4 +1,5 @@
-import {MatDividerModule} from '@angular/material/divider;
+import { NgModule } from '@angular/core';
+import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
     imports: [
