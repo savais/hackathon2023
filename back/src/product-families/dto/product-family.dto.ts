@@ -1,3 +1,3 @@
-export class ProductFamily {
-    
+export class ProductFamilyDto {
+
 }
