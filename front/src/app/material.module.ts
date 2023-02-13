@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
     imports: [
-        MatDividerModule
+        MatDividerModule,
+        MatMenuModule,
     ],
     exports: [
-        MatDividerModule
+        MatDividerModule,
+        MatMenuModule
     ]
 })
 
