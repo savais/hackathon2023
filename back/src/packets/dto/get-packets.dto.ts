@@ -1,4 +1,4 @@
-import { ProductFamily } from "../entities/product-family.entity";
+import { ProductFamily } from "../../product-families/dto/product-family.dto";
 
 export class GetPacketsDto {
     id: number;
