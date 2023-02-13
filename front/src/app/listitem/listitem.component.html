@@ -1,5 +1,5 @@
 <div class="itemlist">
     <div class="listitem" *ngFor="let far of itemlist; let i = index;">
-        <a href="{{ far.id}}"> <p>{{ far.name}} <br>{{far.version}} - {{far.type}}</p></a>
+        <a href="{{ far.id}}" (click)="loadExtras(far.id)"> <p>{{ far.name}} <br>{{far.version}} - {{far.type}}</p></a>
     </div>
 </div>
