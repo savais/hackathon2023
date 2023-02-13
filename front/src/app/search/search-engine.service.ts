@@ -7,3 +7,5 @@ export class SearchEngineService {
 
   constructor() { }
 }
+
+// tähän haut backendin puolelta
