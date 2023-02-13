@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { MatDividerModule } from '@angular/material/divider';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,7 +12,7 @@ import { MaterialModule } from './material.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MatDividerModule
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
