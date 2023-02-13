@@ -102,6 +102,50 @@
 			"response": []
 		},
 		{
+			"name": "Product-types",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"masiinaX-edit\",\r\n    \"description\": \"jees-edit\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/product-types/1",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"product-types",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Product-Types",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/product-types",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"product-types"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Product-families",
 			"request": {
 				"method": "GET",
@@ -132,6 +176,49 @@
 						}
 					}
 				},
+				"url": {
+					"raw": "{{baseurl}}/product-families",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"product-families"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Product-families",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"hitsaus vempeleet-edit\",\r\n    \"description\": \"hiton hyvä-edit\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/product-families",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"product-families"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Product-families",
+			"request": {
+				"method": "DELETE",
+				"header": [],
 				"url": {
 					"raw": "{{baseurl}}/product-families",
 					"host": [
