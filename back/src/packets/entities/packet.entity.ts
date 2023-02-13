@@ -1,6 +1,8 @@
-import { Column, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { ProductType } from "src/product-type/entities/product-type.entity";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { ProductFamily } from "../../product-families/entities/product-family.entity";
 
+@Entity()
 export class Packet {
 
     @PrimaryGeneratedColumn()
@@ -15,8 +17,8 @@ export class Packet {
     @Column()
     version: string;
 
-    @ManyToOne(() => ProductFamily, (productFamily) => productFamily.packets)
-    productFamily: ProductFamily
+    @ManyToOne(() => ProductType, (productType) => productType.packets)
+    productType: ProductType
 
     @Column()
     path: string;
