@@ -3,7 +3,6 @@ import { AuthGuard } from '@nestjs/passport';
 import { ApiOperation, ApiResponse, ApiSecurity } from '@nestjs/swagger';
 import { AppService } from './app.service';
 import { AuthService } from './auth/auth.service';
-import { JwtAuthGuard } from './auth/jwt-auth.guard';
 
 
 @Controller()
@@ -22,7 +21,7 @@ export class AppController {
   @Post('login')
   @UseGuards(AuthGuard('local'))
   async login(@Request() req) {
-    console.log(req)
+    // console.log(req.user)
     const token = this.authService.login(req.user);
     return token;
   }

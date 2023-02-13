@@ -22,6 +22,8 @@ import {
     ApiTags,
   } from '@nestjs/swagger';
 import { CreateUserDto } from './dto/create-user.dto';
+import { Roles } from 'src/auth/roles.decorator';
+import { Role } from 'src/auth/role.enum';
 
 let createUserWithoutAuth = true
 
@@ -50,8 +52,37 @@ export class UsersController {
       }
       
 
-      createUser.isAdmin = true;
+      createUser.roles = ['admin', 'user'];
 
       return await this.usersService.insertUserFromDto(createUser);
+    }
+
+    @Post()
+    @UseGuards(JwtAuthGuard)
+    // @Roles(Role.Admin)
+    @HttpCode(201)
+    @ApiOperation({ summary: 'Create user' })
+    @ApiResponse({
+      status: 201,
+      description: 'The user has been successfully created.',
+      type: User,
+    })
+    async createUser(@Body() createUser: CreateUserDto): Promise<User> {
+      createUser.roles = ['admin', 'user'];
+      return await this.usersService.insertUserFromDto(createUser)
+    }
+
+    @Get()
+    @HttpCode(200)
+    @ApiOperation({summary: 'Fetch all users'})
+    @ApiResponse({
+      status: 201,
+      description: 'Users fetched successfully',
+      type: User,
+      isArray: true
+    })
+
+    async getAllUsers():Promise<User[]> {
+      return await this.usersService.getAllUsers()
     }
 }
