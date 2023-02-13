@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CreatePacketDto } from './dto/create-packe.dto';
+import { CreatePacketDto } from './dto/create-packet.dto';
 import { UpdatePacketDto } from './dto/update-packet.dto';
 import { Packet } from './entities/packet.entity';
 
