@@ -15,30 +15,33 @@ import { PacketsService } from './packets.service';
 const UPLOAD_DIR = "../uploads";
 
 @Controller('packets')
-export class PacketsController {
+export class PacketsController
+{
 
-    constructor(private packetsService: PacketsService) {}
+    constructor(private packetsService: PacketsService) { }
 
     @Get()
-    @ApiOperation({summary: "Get all packets"})
-    @ApiOkResponse({type: GetPacketsDto, isArray: true})
-    async getPackets(): Promise<Packet[]> {
+    @ApiOperation({ summary: "Get all packets" })
+    @ApiOkResponse({ type: GetPacketsDto, isArray: true })
+    async getPackets(): Promise<Packet[]>
+    {
         return await this.packetsService.getPackets();
     }
 
     @Get(":id")
-    @ApiOperation({summary: "Get single packet"})
-    @ApiOkResponse({type: GetPacketsDto})
-    @ApiNotFoundResponse({description: "Packet with id not found"})
+    @ApiOperation({ summary: "Get single packet" })
+    @ApiOkResponse({ type: GetPacketsDto })
+    @ApiNotFoundResponse({ description: "Packet with id not found" })
     async getPacket(
         @Param("id") id: number
-    ): Promise<Packet> {
+    ): Promise<Packet>
+    {
         return await this.packetsService.getPacket(id);
     }
 
     @Post()
-    @ApiOperation({summary: "Add new packet"})
-    @ApiCreatedResponse({type: Packet})
+    @ApiOperation({ summary: "Add new packet" })
+    @ApiCreatedResponse({ type: Packet })
     @UseInterceptors(FileInterceptor("packet", {
         storage: diskStorage({
             destination: UPLOAD_DIR
@@ -47,36 +50,40 @@ export class PacketsController {
     async postPacket(
         @Body() createPacketDto: CreatePacketDto,
         @UploadedFile() packet: Express.Multer.File
-    ): Promise<Packet> {
+    ): Promise<Packet>
+    {
         createPacketDto.packet = packet;
         console.log(packet)
         return await this.packetsService.postPacket(createPacketDto);
     }
 
     @Delete(":id")
-    @ApiOperation({summary: "Remove packet with id"})
-    @ApiOkResponse({type: Packet, description: "Removed succesfully"})
+    @ApiOperation({ summary: "Remove packet with id" })
+    @ApiOkResponse({ type: Packet, description: "Removed succesfully" })
     async deletePacket(
         @Param("id") id: number
-    ): Promise<Packet> {
+    ): Promise<Packet>
+    {
         return await this.packetsService.removePacket(id);
     }
 
     @Patch(":id")
-    @ApiOperation({summary: "Edit packet with id"})
-    @ApiOkResponse({description: "Packet edit succesfull", type: Packet})
+    @ApiOperation({ summary: "Edit packet with id" })
+    @ApiOkResponse({ description: "Packet edit succesfull", type: Packet })
     async editPacket(
         @Param("id") id: number,
         @Body() dto: UpdatePacketDto
-    ): Promise<Packet> {
+    ): Promise<Packet>
+    {
         return await this.packetsService.editPacket(id, dto);
     }
 
     @Get(":id/file")
-    getFile(@Param("id") id: string): StreamableFile {
-        return this.packetsService.getPacketFile(join(UPLOAD_DIR, id));
+    async getFile(@Param("id") id: number): Promise<StreamableFile>
+    {
+        return await this.packetsService.getPacketFile(id, UPLOAD_DIR);
     }
 
 
-    
+
 }

@@ -1,6 +1,7 @@
 import { Injectable, StreamableFile } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { createReadStream } from 'fs';
+import { join } from 'path';
 import { ProductTypeService } from 'src/product-type/product-type.service';
 import { Repository } from 'typeorm';
 import { CreatePacketDto } from './dto/create-packet.dto';
@@ -44,7 +45,9 @@ export class PacketsService {
         return null
     }
 
-    getPacketFile(filepath: string): StreamableFile {
+    async getPacketFile(id: number, fileDir: string): Promise<StreamableFile> {
+        const packet = await this.packetRepository.findOneOrFail({where: {id: id}});
+        const filepath = join(fileDir, packet.path);
         const file = createReadStream(filepath);
         return new StreamableFile(file);
     }
