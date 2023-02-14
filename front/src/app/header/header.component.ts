@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  message="Fiksu Pakentinhallinta"
+  message="Fiksu Paketinhallinta"
 
 }
