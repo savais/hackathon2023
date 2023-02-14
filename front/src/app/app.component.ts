@@ -8,3 +8,5 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent {
   title = 'Fiksu paketinhallinta';
 }
+
+export const API_URL = "http://127.0.0.1:3000";
