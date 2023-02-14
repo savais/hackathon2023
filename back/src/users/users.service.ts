@@ -16,6 +16,10 @@ export class UsersService {
         return await this.usersRepository.findOne({where: {name: name}})
     }
 
+    async getUserById(id: number): Promise<User> {
+        return await this.usersRepository.findOne({where:{id:id}})
+    }
+
     async getUserCount(): Promise<number> {
         return await this.usersRepository.count()
     }
@@ -26,8 +30,12 @@ export class UsersService {
         user.name = userDto.name
         user.email = userDto.email
         user.password = userDto.password
-        user.isAdmin = userDto.isAdmin
+        user.roles = userDto.roles.toString()
 
         return await this.usersRepository.save(user)
+    }
+
+    async getAllUsers(): Promise<User[]> {
+        return await this.usersRepository.find()
     }
 }

@@ -23,5 +23,11 @@ export class User {
 
     @ApiProperty({example: 'true', description: 'does the user have admin powers?'})
     @Column()
-    isAdmin: boolean;
+    roles: string;
+
+
+    public get rolesAsList(): string[]{
+        return String(this.roles).split(",")
+    } 
+        
 }
