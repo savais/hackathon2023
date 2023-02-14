@@ -15,7 +15,7 @@ export class ProductFamilyService {
     }
 
     async getAllProductFamilies():Promise<ProductFamily[]> {
-        return await this.ProductFamiliesRepository.find()
+        return await this.ProductFamiliesRepository.find({relations: {productType: {packets: true}}})
     }
 
     async insertProductFamily(createProductFamily: CreateProductFamilyDto) {

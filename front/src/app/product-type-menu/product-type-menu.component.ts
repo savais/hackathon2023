@@ -9,9 +9,8 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 export class ProductTypeMenuComponent implements OnInit {
 
   @Input() parentForm!: FormGroup;
-  productTypes!: any[];
+  @Input() productTypes!: any[];
   productTypeIdx!: number;
-  @Input() productFamilies!: any[];
 
   onValueChange(event:any) {
     if(event.value !== this.parentForm.controls['productType'].value) {
@@ -20,13 +19,6 @@ export class ProductTypeMenuComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    
-    this.parentForm.get("productFamily")?.valueChanges.subscribe(async (value) => {
-      // console.log(this.productFamilies)
-      this.productTypeIdx = this.productFamilies.find((x) => x.id == value)
-
-      let res = await fetch("http://127.0.0.1:3000/product-types")
-      this.productTypes = await res.json()
-    })
+    console.log(this.productTypes)
   }
 }

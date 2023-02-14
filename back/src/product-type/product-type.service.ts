@@ -18,7 +18,7 @@ export class ProductTypeService {
 
     //TODO: Paging
     async getAllProductTypes(): Promise<ProductType[]> {
-        return await this.productTypesRepository.find()
+        return await this.productTypesRepository.find({relations: {productFamily: true, packets: true}})
     }
 
     async insertProductType(createProductType: CreateProductTypeDto): Promise<ProductType> {
@@ -31,7 +31,7 @@ export class ProductTypeService {
     }
 
     async getProductTypeById(id: number):Promise<ProductType> {
-        return await this.productTypesRepository.findOne({where: {id: id}, relations: ['productFamily', 'packets']})
+        return await this.productTypesRepository.findOne({where: {id: id}, relations: {productFamily: true, packets: true}})
     }
 
     async updateProductTypeById(id: number, updateProductTypeDto: UpdateProductTypeDto): Promise<ProductType> {
