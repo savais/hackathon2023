@@ -55,7 +55,7 @@ export class PacketsController
     {
         createPacketDto.packet = packet;
         console.log(packet)
-        return await this.packetsService.postPacket(createPacketDto);
+        return await this.packetsService.postPacket(createPacketDto, UPLOAD_DIR);
     }
 
     @Delete(":id")

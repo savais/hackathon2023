@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException, StreamableFile } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { createReadStream, rmSync } from 'fs';
+import { createReadStream, rmSync, renameSync } from 'fs';
 import { join } from 'path';
 import { NotFoundError } from 'rxjs';
 import { ProductTypeService } from 'src/product-type/product-type.service';
@@ -31,7 +31,7 @@ export class PacketsService {
         return packet;
     }
 
-    async postPacket(createPacketDto: CreatePacketDto): Promise<Packet> {
+    async postPacket(createPacketDto: CreatePacketDto, fileDir: string): Promise<Packet> {
         const productType = await this.productTypeService.getProductTypeByName(createPacketDto.type);
         const packet: Partial<Packet> = {};
 
@@ -62,7 +62,7 @@ export class PacketsService {
         }
 
         if(packet) {
-            rmSync(join(fileDir, oldPacket.path));
+            rmSync(getPath(fileDir, oldPacket.path));
             oldPacket.path = packet.filename;
         }
 
@@ -90,8 +90,12 @@ export class PacketsService {
         if(packet === null) {
             throw new NotFoundException(`id: ${id} was not found`)
         }
-        const filepath = join(fileDir, packet.path);
+        const filepath = getPath(fileDir, packet.path);
         const file = createReadStream(filepath);
         return new StreamableFile(file);
     }
+}
+
+export const getPath = (fileDir: string, id: string) => {
+    return join(fileDir, id);
 }
