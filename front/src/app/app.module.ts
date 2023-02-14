@@ -18,14 +18,13 @@ import { MenuModule } from './menu/menu.module';
     AppComponent,
     ListitemComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
     MenuModule
-
   ],
   providers: [],
   bootstrap: [AppComponent]
