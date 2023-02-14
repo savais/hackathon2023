@@ -40,7 +40,7 @@ export class PacketsController
     }
 
     @Post()
-    @UseGuards(JwtAuthGuard)
+    //@UseGuards(JwtAuthGuard)
     @ApiOperation({ summary: "Add new packet" })
     @ApiCreatedResponse({ type: Packet })
     @UseInterceptors(FileInterceptor("packet", {
@@ -59,7 +59,7 @@ export class PacketsController
     }
 
     @Delete(":id")
-    @UseGuards(JwtAuthGuard)
+    //@UseGuards(JwtAuthGuard)
     @ApiOperation({ summary: "Remove packet with id" })
     @ApiOkResponse({ type: Packet, description: "Removed succesfully" })
     @ApiNotFoundResponse({description: "Packet not found for used id"})
@@ -71,7 +71,7 @@ export class PacketsController
     }
 
     @Patch(":id")
-    @UseGuards(JwtAuthGuard)
+    //@UseGuards(JwtAuthGuard)
     @ApiOperation({ summary: "Edit packet with id" })
     @ApiOkResponse({ description: "Packet edit succesfull", type: Packet })
     @ApiNotFoundResponse({description: "Packet not found for used id"})
