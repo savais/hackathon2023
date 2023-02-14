@@ -9,6 +9,8 @@ import { ListitemComponent } from './listitem/listitem.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
+import { PacketListComponent } from './packet-list/packet-list.component';
+import { PacketComponent } from './packet/packet.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { MenuComponent } from './menu/menu.component';
     ListitemComponent,
     HeaderComponent,
     FooterComponent,
-    MenuComponent
+    MenuComponent,
+    PacketListComponent,
+    PacketComponent
   ],
   imports: [
     BrowserModule,
