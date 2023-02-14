@@ -8,6 +8,7 @@ import { MaterialModule } from './material.module';
 import { ListitemComponent } from './listitem/listitem.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { MenuModule } from './menu/menu.module';
 
 
 
@@ -23,6 +24,7 @@ import { FooterComponent } from './footer/footer.component';
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
+    MenuModule
 
   ],
   providers: [],
