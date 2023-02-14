@@ -1,0 +1,15 @@
+
+.listitem {
+    display: flex;
+    margin: 8px;
+    padding: 8px 16px;
+    max-width: 960px;
+    flex-direction: column;
+    align-items: center;
+    background-color:#eee;
+    _background: linear-gradient(0deg, #ccc 10%, #eee 90%);
+    border-width: 2px;
+    border-style:solid;
+    border-color: #444;
+    border-radius: 5px;
+  }

@@ -1,0 +1,91 @@
+@font-face {font-family: myriad;   src: url(/assets/fonts/Myriad\ Pro\ Regular.ttf); } 
+@font-face {font-family: proxima;   src: url(/assets/fonts/ProximaNova-Regular.otf); } 
+
+body {   font-family: proxima; }
+  
+  :host {
+    font-family: proxima;
+    font-size: 14px;
+    color: #414141;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 8px 0;
+    font-family: myriad;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .spacer {
+    flex: 1;
+  }
+
+
+
+  .content {
+    display: flex;
+    margin: 82px auto 32px;
+    padding: 0 16px;
+    max-width: 960px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+  a,
+  a:visited,
+  a:hover {
+    color: #cccccc;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #cccccc;
+  }
+
+
+  footer {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    line-height: 20px;
+  }
+
+  footer a {
+    display: flex;
+    align-items: center;
+  }
+
+
+  /* Responsive Styles */
+  @media screen and (max-width: 767px) {
+    .card-container > *:not(.circle-link) ,
+    .terminal {
+      width: 100%;
+    }
+
+    .card:not(.highlight-card) {
+      height: 16px;
+      margin: 8px 0;
+    }
+
+    .card.highlight-card span {
+      margin-left: 72px;
+    }
+  }
+
+  @media screen and (max-width: 575px) {
+    svg#rocket-smoke {
+      visibility: hidden;
+    }
+  }
