@@ -10,7 +10,7 @@
             <td class="packet-name">{{packet.name}}</td>
             <td class="packet-desc">{{packet.description}}</td>
             <td class="packet-version">{{packet.version}}</td>
-            <td><a href="{{downloadUrl}}/{{packet.id}}/file" download target="_blank">Download</a></td>
+            <td><a href="{{API_URL}}/packets/{{packet.id}}/file" download="{{packet.name}}_{{packet.version}}" target="_blank">Download</a></td>
         </tr>
 
     </table>

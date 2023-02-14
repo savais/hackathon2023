@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { API_URL } from '../app.component';
 import { Packet } from '../packet/packet.component';
 
 @Component({
@@ -8,10 +9,10 @@ import { Packet } from '../packet/packet.component';
 })
 export class PacketListComponent {
   @Input() packets!: Packet[];
-  downloadUrl = "http://127.0.0.1:3000/packets";
+  API_URL = API_URL
 
   async ngOnInit(): Promise<void> {
-    const packets = await fetch("http://127.0.0.1:3000/packets");
+    const packets = await fetch(this.API_URL + "/packets");
     this.packets = await packets.json();
   }
 
