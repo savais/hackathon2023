@@ -10,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
 import { ProductTypeMenuModule } from "./product-type-menu/product-type-menu.module";
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { ProductTypeMenuModule } from "./product-type-menu/product-type-menu.mod
         BrowserModule,
         AppRoutingModule,
         MaterialModule,
-        ProductTypeMenuModule
+        ProductTypeMenuModule,
+        HttpClientModule
     ]
 })
 export class AppModule { }

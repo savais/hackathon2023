@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
+import { MenuService } from './menu.service';
 
 @Component({
   selector: 'app-menu',
@@ -12,7 +16,7 @@ export class MenuComponent implements OnInit {
   parentForm!: FormGroup;
   productFamilies!: any[];
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private menuService: MenuService) {}
 
   onValueChange(event:any) {
     if(event.value !== this.parentForm.controls['categoryValue'].value) {
@@ -26,17 +30,6 @@ export class MenuComponent implements OnInit {
       productType: new FormControl
     })
 
-    try {
-      let res = fetch("localhost:3000/product-families")
-      console.log(JSON.stringify(res))
-    } catch (error) {
-      
-    }
-    // fetch("localhost:3000/product-families")
-    // .then((response) => response.json())
-    // .then((data) => {
-    //   this.productFamilies = data
-    //   console.log(data)
-    // });
+    await this.menuService.getProductFamilies()
   }
 }
