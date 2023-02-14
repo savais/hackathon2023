@@ -6,9 +6,11 @@ import { SearchDef } from '../searchDef.class';
 })
 export class SearchEngineService {
 
-  searchDefs: SearchDef [] = [
-    new SearchDef(1, "name", "1.0", "Type", "Product family")
-  ]
+  //searchDefs: SearchDef [] = [
+  //  new SearchDef(1, "name", "1.0", "Type", "Product family")
+  //]
+  
+  
 
   constructor() { }
 }
