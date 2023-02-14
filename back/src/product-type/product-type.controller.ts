@@ -10,7 +10,7 @@ import { ProductTypeService } from './product-type.service';
 export class ProductTypeController {
     constructor(private productTypeService: ProductTypeService) {}
 
-    @ApiOperation({ summary: "Get all product types" })
+    @ApiOperation({ summary: "Get all product-types" })
     @ApiResponse({
         status: 200,
         description: 'Product-types fetched successfully',
@@ -60,8 +60,7 @@ export class ProductTypeController {
     @ApiOperation({ summary: "Delete single product-type by id"})
     @ApiResponse({
         status: 200,
-        description: 'Product-type deleted succesfully',
-        type: ProductType,
+        description: 'Product-type deleted succesfully'
       })
     @UseGuards(JwtAuthGuard)
     @Delete(':id')

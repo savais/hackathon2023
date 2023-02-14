@@ -28,7 +28,7 @@ export class ProductFamilyService {
     }
 
     async getProductFamilyById(id: number):Promise<ProductFamily> {
-        return await this.ProductFamiliesRepository.findOne({where: {id: id}, relations: ['productFamily', 'packets']})
+        return await this.ProductFamiliesRepository.findOne({where: {id: id}, relations: {productType: {packets: true}}})
     }
 
     async updateProductFamilyById(id: number, updateProductFamilyDto: UpdateProductFamilyDto): Promise<ProductFamily> {
