@@ -2,7 +2,7 @@
 <div class="centeredContent">
   <mat-chip-listbox (change)="onValueChange($event)" aria-label="Category selection">
       <svg matChipAvatar  height="1" width="1"></svg> 
-      <mat-chip-option leadingIcon="none" color="primary"  *ngFor="let category of categories" value={{category}}>{{category}}</mat-chip-option>
+      <mat-chip-option leadingIcon="none" color="primary"  *ngFor="let productFamily of productFamilies" value={{productFamily.name}}>{{productFamily.name}}</mat-chip-option>
   </mat-chip-listbox>
 </div>
 <app-product-type-menu></app-product-type-menu>

@@ -9,7 +9,7 @@ export class MenuService {
   constructor(private http: HttpClient) { }
 
   async getProductFamilies() {
-    let res = this.http.get<any>('localhost:3000/product-families').subscribe()
-      console.log(JSON.stringify(res))
+    const pf = await fetch("http://127.0.0.1:3000/product-families");
+    return await pf.json();
   }
 }

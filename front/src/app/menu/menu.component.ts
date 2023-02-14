@@ -30,6 +30,6 @@ export class MenuComponent implements OnInit {
       productType: new FormControl
     })
 
-    await this.menuService.getProductFamilies()
+    this.productFamilies = await this.menuService.getProductFamilies()
   }
 }
