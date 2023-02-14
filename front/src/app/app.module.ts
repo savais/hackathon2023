@@ -8,9 +8,7 @@ import { MaterialModule } from './material.module';
 import { ListitemComponent } from './listitem/listitem.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { MenuModule } from './menu/menu.module';
-
-
+import { MenuComponent } from './menu/menu.component';
 
 
 @NgModule({
@@ -18,14 +16,13 @@ import { MenuModule } from './menu/menu.module';
     AppComponent,
     ListitemComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MaterialModule,
-    MenuModule
-
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
