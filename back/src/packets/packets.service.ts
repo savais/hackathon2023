@@ -17,7 +17,7 @@ export class PacketsService {
     ) {}
 
     async getPackets(): Promise<Packet[]> {
-        return this.packetRepository.find();
+        return this.packetRepository.find({relations: {productType: {productFamily: true}}});
     }
 
     async getPacket(id: number): Promise<Packet> {
@@ -70,7 +70,7 @@ export class PacketsService {
     }
 
     async getPacketFile(id: number, fileDir: string): Promise<StreamableFile> {
-        const packet = await this.packetRepository.findOneOrFail({where: {id: id}});
+        const packet = await this.packetRepository.findOneOrFail({where: {id: id}, select: {path: true}});
         const filepath = join(fileDir, packet.path);
         const file = createReadStream(filepath);
         return new StreamableFile(file);

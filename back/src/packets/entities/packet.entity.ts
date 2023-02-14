@@ -20,6 +20,6 @@ export class Packet {
     @ManyToOne(() => ProductType, (productType) => productType.packets)
     productType: ProductType
 
-    @Column()
+    @Column({select: false})
     path: string;
 }
