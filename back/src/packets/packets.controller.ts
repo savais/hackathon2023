@@ -1,9 +1,10 @@
 import { Body, Controller, Get, Param, Post, Delete, Patch, UseInterceptors, StreamableFile } from '@nestjs/common';
-import { UploadedFile } from '@nestjs/common/decorators';
+import { UploadedFile, UseGuards } from '@nestjs/common/decorators';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiNotFoundResponse } from '@nestjs/swagger';
 import { ApiCreatedResponse, ApiOkResponse, ApiOperation } from '@nestjs/swagger/dist';
 import { diskStorage } from 'multer';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { getEnv } from 'src/main';
 import { CreatePacketDto } from './dto/create-packet.dto';
 import { GetPacketsDto } from './dto/get-packets.dto';
@@ -39,6 +40,7 @@ export class PacketsController
     }
 
     @Post()
+    @UseGuards(JwtAuthGuard)
     @ApiOperation({ summary: "Add new packet" })
     @ApiCreatedResponse({ type: Packet })
     @UseInterceptors(FileInterceptor("packet", {
@@ -57,6 +59,7 @@ export class PacketsController
     }
 
     @Delete(":id")
+    @UseGuards(JwtAuthGuard)
     @ApiOperation({ summary: "Remove packet with id" })
     @ApiOkResponse({ type: Packet, description: "Removed succesfully" })
     async deletePacket(
@@ -67,6 +70,7 @@ export class PacketsController
     }
 
     @Patch(":id")
+    @UseGuards(JwtAuthGuard)
     @ApiOperation({ summary: "Edit packet with id" })
     @ApiOkResponse({ description: "Packet edit succesfull", type: Packet })
     @UseInterceptors(FileInterceptor("packet", {

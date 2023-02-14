@@ -76,7 +76,7 @@ export class UsersController {
     @HttpCode(200)
     @ApiOperation({summary: 'Fetch all users'})
     @ApiResponse({
-      status: 201,
+      status: 200,
       description: 'Users fetched successfully',
       type: User,
       isArray: true
