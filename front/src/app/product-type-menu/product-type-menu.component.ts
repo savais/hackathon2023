@@ -6,15 +6,27 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
   templateUrl: './product-type-menu.component.html',
   styleUrls: ['./product-type-menu.component.css']
 })
-export class ProductTypeMenuComponent {
+export class ProductTypeMenuComponent implements OnInit {
 
   @Input() parentForm!: FormGroup;
-  categories!: string[];
-  productFamilies!: any[];
+  productTypes!: any[];
+  productTypeIdx!: number;
+  @Input() productFamilies!: any[];
 
   onValueChange(event:any) {
-    if(event.value !== this.parentForm.controls['categoryValue'].value) {
-      this.parentForm.controls['categoryValue'].setValue(event.value)
+    if(event.value !== this.parentForm.controls['productType'].value) {
+      this.parentForm.controls['productType'].setValue(event.value)
     }
+  }
+
+  async ngOnInit(): Promise<void> {
+    
+    this.parentForm.get("productFamily")?.valueChanges.subscribe(async (value) => {
+      // console.log(this.productFamilies)
+      this.productTypeIdx = this.productFamilies.find((x) => x.id == value)
+
+      let res = await fetch("http://127.0.0.1:3000/product-types")
+      this.productTypes = await res.json()
+    })
   }
 }

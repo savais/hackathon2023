@@ -12,15 +12,15 @@ import { MenuService } from './menu.service';
 })
 export class MenuComponent implements OnInit {
 
-  categories!: string[];
   parentForm!: FormGroup;
   productFamilies!: any[];
 
   constructor(private fb: FormBuilder, private menuService: MenuService) {}
 
   onValueChange(event:any) {
-    if(event.value !== this.parentForm.controls['categoryValue'].value) {
-      this.parentForm.controls['categoryValue'].setValue(event.value)
+    if(event.value !== this.parentForm.controls['productFamily'].value) {
+      console.log(event)
+      this.parentForm.controls['productFamily'].setValue(event.value)
     }
   }
 
