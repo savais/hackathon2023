@@ -9,22 +9,24 @@ import { ListitemComponent } from './listitem/listitem.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
+import { ProductTypeMenuModule } from "./product-type-menu/product-type-menu.module";
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ListitemComponent,
-    HeaderComponent,
-    FooterComponent,
-    MenuComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    MaterialModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        ListitemComponent,
+        HeaderComponent,
+        FooterComponent,
+        MenuComponent
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        MaterialModule,
+        ProductTypeMenuModule
+    ]
 })
 export class AppModule { }
