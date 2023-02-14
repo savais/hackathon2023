@@ -3,19 +3,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder } from '@nestjs/swagger';
 import { SwaggerModule } from '@nestjs/swagger/dist';
-import dotenv from "dotenv";
-
-type EnvKey = "JWT_SECRET" | "UPLOAD_DIR" | "PORT";
-
-dotenv.config();
-
-export const getEnv = (key: EnvKey) => {
-  const value = process.env[key];
-  if(value === undefined) {
-    throw new Error(`Key: ${key} not found in process.env`);
-  }
-  return value;
-}
+import { getEnv } from './app.service';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
