@@ -4,13 +4,14 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiNotFoundResponse } from '@nestjs/swagger';
 import { ApiCreatedResponse, ApiOkResponse, ApiOperation } from '@nestjs/swagger/dist';
 import { diskStorage } from 'multer';
+import { getEnv } from 'src/main';
 import { CreatePacketDto } from './dto/create-packet.dto';
 import { GetPacketsDto } from './dto/get-packets.dto';
 import { UpdatePacketDto } from './dto/update-packet.dto';
 import { Packet } from './entities/packet.entity';
 import { PacketsService } from './packets.service';
 
-const UPLOAD_DIR = "./uploads";
+const UPLOAD_DIR = getEnv("UPLOAD_DIR");
 
 @Controller('packets')
 export class PacketsController
