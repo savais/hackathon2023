@@ -13,6 +13,7 @@ import { ProductTypeMenuModule } from "./product-type-menu/product-type-menu.mod
 import { HttpClientModule } from '@angular/common/http';
 import { PacketListComponent } from './packet-list/packet-list.component';
 import { PacketComponent } from './packet/packet.component';
+import { UploadFormComponent } from './upload-form/upload-form.component';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import { PacketComponent } from './packet/packet.component';
         FooterComponent,
         MenuComponent,
         PacketListComponent,
-        PacketComponent
+        PacketComponent,
+    UploadFormComponent
     ],
     providers: [],
     bootstrap: [AppComponent],

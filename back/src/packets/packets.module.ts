@@ -6,7 +6,7 @@ import { PacketsController } from './packets.controller';
 import { PacketsService } from './packets.service';
 
 @Module({
-  imports:[TypeOrmModule.forFeature([Packet]), ProductTypeModule],
+  imports:[TypeOrmModule.forFeature([Packet]), ProductTypeModule, ],
   controllers: [PacketsController],
   providers: [PacketsService],
 })

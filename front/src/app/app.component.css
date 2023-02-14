@@ -53,6 +53,18 @@ body {   font-family: proxima; }
     color: #cccccc;
   }
 
+  li:hover {
+    border-color: transparent transparent transparent #f57300;
+  }
+
+  li {
+    border-color: transparent;
+    border-width: 6px;
+    border-style: solid;
+    list-style-type: none;
+    padding: 8px;
+  }
+
 
   footer {
     margin-top: 8px;
@@ -69,23 +81,9 @@ body {   font-family: proxima; }
 
   /* Responsive Styles */
   @media screen and (max-width: 767px) {
-    .card-container > *:not(.circle-link) ,
-    .terminal {
-      width: 100%;
-    }
 
-    .card:not(.highlight-card) {
-      height: 16px;
-      margin: 8px 0;
-    }
-
-    .card.highlight-card span {
-      margin-left: 72px;
-    }
   }
 
   @media screen and (max-width: 575px) {
-    svg#rocket-smoke {
-      visibility: hidden;
-    }
+
   }
