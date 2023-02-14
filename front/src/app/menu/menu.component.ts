@@ -21,13 +21,12 @@ export class MenuComponent implements OnInit {
 
   async onValueChange(event:any) {
     if(event.value !== this.parentForm.controls['productFamily'].value) {
-      console.log(event)
+      // console.log(event)
       this.parentForm.controls['productFamily'].setValue(event.value)
+      this.productTypes = this.productFamilies.find(x => x.id == event.value).productType
     }
 
     if(event.value !== this.parentForm.controls['productType'].value) {
-      console.log(event.value)
-      this.productTypes = this.productFamilies.find(x => x.id == event.value).productTypes
       this.packets = await this.menuService.getPackets(event.value)
     }
   }
@@ -38,10 +37,10 @@ export class MenuComponent implements OnInit {
       productType: new FormControl
     })
 
-    this.parentForm.controls['productFamily'].setValue(1)
-    this.parentForm.controls['productType'].setValue(1)
+    // this.parentForm.controls['productFamily'].setValue(1)
+    // this.parentForm.controls['productType'].setValue(1)
 
     this.productFamilies = await this.menuService.getProductFamilies()
-    this.packets = await this.menuService.getPackets(1)
+    // this.packets = await this.menuService.getPackets(1)
   }
 }
