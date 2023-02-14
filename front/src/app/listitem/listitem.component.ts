@@ -35,7 +35,9 @@ export class ListitemComponent implements OnInit {
    ];
  }
 
- ngOnInit(): void{}
+ ngOnInit(): void {
+  
+ }
 
   loadExtras(id:number){
     if (id == 2) console.log("moomoo");

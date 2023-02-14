@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Request, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiOperation, ApiResponse, ApiSecurity } from '@nestjs/swagger';
+import { ApiBasicAuth, ApiOkResponse, ApiOperation, ApiResponse, ApiSecurity, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { AppService } from './app.service';
 import { AuthService } from './auth/auth.service';
 
@@ -18,6 +18,10 @@ export class AppController {
     return this.appService.getHello();
   }
 
+  @ApiOperation({ summary: "Log the user in" })
+  @ApiBasicAuth()
+  @ApiOkResponse({ description: "Returns accesstoken, when logged in successfully" })
+  @ApiUnauthorizedResponse({description: "Packet not found for used id"})
   @Post('login')
   @UseGuards(AuthGuard('local'))
   async login(@Request() req) {

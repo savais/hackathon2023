@@ -9,26 +9,29 @@ import { ListitemComponent } from './listitem/listitem.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
+import { ProductTypeMenuModule } from "./product-type-menu/product-type-menu.module";
+import { HttpClientModule } from '@angular/common/http';
 import { PacketListComponent } from './packet-list/packet-list.component';
 import { PacketComponent } from './packet/packet.component';
 
-
 @NgModule({
-  declarations: [
-    AppComponent,
-    ListitemComponent,
-    HeaderComponent,
-    FooterComponent,
-    MenuComponent,
-    PacketListComponent,
-    PacketComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    MaterialModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        ListitemComponent,
+        HeaderComponent,
+        FooterComponent,
+        MenuComponent,
+        PacketListComponent,
+        PacketComponent
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        MaterialModule,
+        ProductTypeMenuModule,
+        HttpClientModule
+    ]
 })
 export class AppModule { }
