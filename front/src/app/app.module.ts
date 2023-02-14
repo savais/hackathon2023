@@ -11,7 +11,8 @@ import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
 import { ProductTypeMenuModule } from "./product-type-menu/product-type-menu.module";
 import { HttpClientModule } from '@angular/common/http';
-
+import { PacketListComponent } from './packet-list/packet-list.component';
+import { PacketComponent } from './packet/packet.component';
 
 @NgModule({
     declarations: [
@@ -19,7 +20,9 @@ import { HttpClientModule } from '@angular/common/http';
         ListitemComponent,
         HeaderComponent,
         FooterComponent,
-        MenuComponent
+        MenuComponent,
+        PacketListComponent,
+        PacketComponent
     ],
     providers: [],
     bootstrap: [AppComponent],

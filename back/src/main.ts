@@ -27,6 +27,8 @@ async function bootstrap() {
   SwaggerModule.setup(swaggerInfo.api_path, app, document);
   
   app.useGlobalPipes(new ValidationPipe());
+
+  app.enableCors();
   
   await app.listen(getEnv("PORT"));
 }
