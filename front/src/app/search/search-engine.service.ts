@@ -10,7 +10,6 @@ export class SearchEngineService {
   //  new SearchDef(1, "name", "1.0", "Type", "Product family")
   //]
   
-  
 
   constructor() { }
 }
