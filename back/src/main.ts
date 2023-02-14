@@ -5,7 +5,7 @@ import { DocumentBuilder } from '@nestjs/swagger';
 import { SwaggerModule } from '@nestjs/swagger/dist';
 import dotenv from "dotenv";
 
-type EnvKey = "JWT_SECRET" | "UPLOAD_DIR";
+type EnvKey = "JWT_SECRET" | "UPLOAD_DIR" | "PORT";
 
 dotenv.config();
 
@@ -40,6 +40,6 @@ async function bootstrap() {
   
   app.useGlobalPipes(new ValidationPipe());
   
-  await app.listen(3000);
+  await app.listen(getEnv("PORT"));
 }
 bootstrap();
