@@ -11,6 +11,7 @@ import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
 import { PacketListComponent } from './packet-list/packet-list.component';
 import { PacketComponent } from './packet/packet.component';
+import { UploadFormComponent } from './upload-form/upload-form.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { PacketComponent } from './packet/packet.component';
     FooterComponent,
     MenuComponent,
     PacketListComponent,
-    PacketComponent
+    PacketComponent,
+    UploadFormComponent
   ],
   imports: [
     BrowserModule,
