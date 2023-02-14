@@ -11,10 +11,10 @@ export class PacketListComponent {
   @Input() packets!: Packet[];
   API_URL = API_URL
 
-  async ngOnInit(): Promise<void> {
-    const packets = await fetch(this.API_URL + "/packets");
-    this.packets = await packets.json();
-  }
+  // async ngOnInit(): Promise<void> {
+  //   const packets = await fetch(this.API_URL + "/packets");
+  //   this.packets = await packets.json();
+  // }
 
 }
 
