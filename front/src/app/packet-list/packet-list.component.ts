@@ -8,10 +8,12 @@ import { Packet } from '../packet/packet.component';
 })
 export class PacketListComponent {
   @Input() packets!: Packet[];
+  downloadUrl = "http://127.0.0.1:3000/packets";
 
   async ngOnInit(): Promise<void> {
     const packets = await fetch("http://127.0.0.1:3000/packets");
     this.packets = await packets.json();
   }
+
 }
 

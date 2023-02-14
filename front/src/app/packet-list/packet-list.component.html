@@ -1,3 +1,17 @@
 <div class="packet-list">
-    <app-packet *ngFor="let packet of packets" [packet]="packet"></app-packet>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Version</th>
+            <th></th>
+        </tr>
+        <tr *ngFor="let packet of packets">
+            <td class="packet-name">{{packet.name}}</td>
+            <td class="packet-desc">{{packet.description}}</td>
+            <td class="packet-version">{{packet.version}}</td>
+            <td><a href="{{downloadUrl}}/{{packet.id}}/file" download target="_blank">Download</a></td>
+        </tr>
+
+    </table>
 </div>
