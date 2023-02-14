@@ -1,7 +1,8 @@
-import { Injectable, StreamableFile } from '@nestjs/common';
+import { Injectable, NotFoundException, StreamableFile } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { createReadStream, rmSync } from 'fs';
 import { join } from 'path';
+import { NotFoundError } from 'rxjs';
 import { ProductTypeService } from 'src/product-type/product-type.service';
 import { Repository } from 'typeorm';
 import { CreatePacketDto } from './dto/create-packet.dto';
@@ -17,11 +18,17 @@ export class PacketsService {
     ) {}
 
     async getPackets(): Promise<Packet[]> {
-        return this.packetRepository.find();
+        return this.packetRepository.find({relations: {productType: {productFamily: true}}});
     }
 
     async getPacket(id: number): Promise<Packet> {
-        return this.packetRepository.findOneOrFail({where: {id: id}});
+        const packet = this.packetRepository.findOne({where: {id: id}});
+
+        if(packet === null) {
+            throw new NotFoundException(`id: ${id} was not found`)
+        }
+
+        return packet;
     }
 
     async postPacket(createPacketDto: CreatePacketDto): Promise<Packet> {
@@ -38,12 +45,21 @@ export class PacketsService {
     }
 
     async removePacket(id: number): Promise<Packet> {
-        const packet = await this.packetRepository.findOneOrFail({where: {id: id}});
+        const packet = await this.packetRepository.findOne({where: {id: id}});
+
+        if(packet === null) {
+            throw new NotFoundException(`id: ${id} was not found`)
+        }
+
         return await this.packetRepository.remove(packet);
     }
 
     async editPacket(id: number, dto: UpdatePacketDto, packet: Express.Multer.File, fileDir: string): Promise<Packet> {
-        const oldPacket = await this.packetRepository.findOneOrFail({where: {id: id}});
+        const oldPacket = await this.packetRepository.findOne({where: {id: id}});
+
+        if(oldPacket === null) {
+            throw new NotFoundException(`id: ${id} was not found`)
+        }
 
         if(packet) {
             rmSync(join(fileDir, oldPacket.path));
@@ -70,7 +86,10 @@ export class PacketsService {
     }
 
     async getPacketFile(id: number, fileDir: string): Promise<StreamableFile> {
-        const packet = await this.packetRepository.findOneOrFail({where: {id: id}});
+        const packet = await this.packetRepository.findOne({where: {id: id}, select: {path: true}});
+        if(packet === null) {
+            throw new NotFoundException(`id: ${id} was not found`)
+        }
         const filepath = join(fileDir, packet.path);
         const file = createReadStream(filepath);
         return new StreamableFile(file);

@@ -18,7 +18,7 @@ export class AuthService {
     if (user && user.password === password) {
       const result = {
         id: user.id,
-        name: user.name,
+        username: user.username,
         password: '',
         email: user.email,
         roles: user.roles,
@@ -32,7 +32,7 @@ export class AuthService {
   }
 
   async login(user: User) {
-    const payload = { name: user.name, sub: user.id };
+    const payload = { name: user.username, sub: user.id };
     return { accessToken: this.jwtService.sign(payload) };
   }
 }

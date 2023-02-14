@@ -13,7 +13,7 @@ export class UsersService {
 
     async getUserByName(name: string): Promise<User> {
         console.log("getUserByName")
-        return await this.usersRepository.findOne({where: {name: name}})
+        return await this.usersRepository.findOne({where: {username: name}})
     }
 
     async getUserById(id: number): Promise<User> {
@@ -27,7 +27,7 @@ export class UsersService {
     async insertUserFromDto(userDto: CreateUserDto): Promise<User> {
         const user = new User()
 
-        user.name = userDto.name
+        user.username = userDto.username
         user.email = userDto.email
         user.password = userDto.password
         user.roles = userDto.roles.toString()

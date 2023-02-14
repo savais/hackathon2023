@@ -34,10 +34,10 @@ export class UsersController {
 
     @Post('first')
     @HttpCode(201)
-    @ApiOperation({ summary: 'Create the first user with an embedded profile without authcheck' })
+    @ApiOperation({ summary: 'Create the first user without authcheck' })
     @ApiResponse({
       status: 201,
-      description: 'The user and profile have been successfully created.',
+      description: 'The user has been successfully created.',
       type: User,
     })
     async createFirstUser(
@@ -62,6 +62,7 @@ export class UsersController {
     // @Roles(Role.Admin)
     @HttpCode(201)
     @ApiOperation({ summary: 'Create user' })
+    @ApiBearerAuth()
     @ApiResponse({
       status: 201,
       description: 'The user has been successfully created.',
@@ -76,7 +77,7 @@ export class UsersController {
     @HttpCode(200)
     @ApiOperation({summary: 'Fetch all users'})
     @ApiResponse({
-      status: 201,
+      status: 200,
       description: 'Users fetched successfully',
       type: User,
       isArray: true

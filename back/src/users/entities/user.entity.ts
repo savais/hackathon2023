@@ -9,11 +9,11 @@ export class User {
     id: number;
 
     @ApiProperty({example: 'kuvaaja01', description: 'name of the user'})
-    @Column()
-    name: string;
+    @Column({unique: true})
+    username: string;
 
     @ApiProperty({example: 'usermail@mail.fi', description: 'email of the user'})
-    @Column()
+    @Column({unique: true})
     email: string;
 
     // TODO: Needs to be replaced with a salted hash
@@ -21,7 +21,7 @@ export class User {
     @Column()
     password: string;
 
-    @ApiProperty({example: 'true', description: 'does the user have admin powers?'})
+    @ApiProperty({example: 'admin,user', description: 'roles separated by comma'})
     @Column()
     roles: string;
 
