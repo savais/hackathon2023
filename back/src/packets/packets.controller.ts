@@ -62,6 +62,7 @@ export class PacketsController
     @UseGuards(JwtAuthGuard)
     @ApiOperation({ summary: "Remove packet with id" })
     @ApiOkResponse({ type: Packet, description: "Removed succesfully" })
+    @ApiNotFoundResponse({description: "Packet not found for used id"})
     async deletePacket(
         @Param("id") id: number
     ): Promise<Packet>
@@ -73,6 +74,7 @@ export class PacketsController
     @UseGuards(JwtAuthGuard)
     @ApiOperation({ summary: "Edit packet with id" })
     @ApiOkResponse({ description: "Packet edit succesfull", type: Packet })
+    @ApiNotFoundResponse({description: "Packet not found for used id"})
     @UseInterceptors(FileInterceptor("packet", {
         storage: diskStorage({
             destination: UPLOAD_DIR
@@ -90,6 +92,7 @@ export class PacketsController
     @Get(":id/file")
     @ApiOperation({summary: "Get packet file with id"})
     @ApiOkResponse({description: "Found image succesfully", type: StreamableFile})
+    @ApiNotFoundResponse({description: "Packet not found for used id"})
     async getFile(@Param("id") id: number): Promise<StreamableFile>
     {
         return await this.packetsService.getPacketFile(id, UPLOAD_DIR);
