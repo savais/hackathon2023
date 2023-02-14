@@ -8,7 +8,7 @@ import { MenuListItemClickModule } from '../menu-list-item-click/menu-list-item-
 
 @NgModule({
   declarations: [
-    MenuComponent,
+    MenuComponent
   ],
   imports: [
     CommonModule,
