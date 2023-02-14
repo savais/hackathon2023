@@ -14,13 +14,19 @@ export class MenuComponent implements OnInit {
 
   parentForm!: FormGroup;
   productFamilies!: any[];
+  packets!: any[];
 
   constructor(private fb: FormBuilder, private menuService: MenuService) {}
 
-  onValueChange(event:any) {
+  async onValueChange(event:any) {
     if(event.value !== this.parentForm.controls['productFamily'].value) {
       console.log(event)
       this.parentForm.controls['productFamily'].setValue(event.value)
+    }
+
+    if(event.value !== this.parentForm.controls['productType'].value) {
+      console.log(event.value)
+      this.packets = await this.menuService.getPackets(event.value)
     }
   }
 
@@ -29,6 +35,9 @@ export class MenuComponent implements OnInit {
       productFamily: new FormControl,
       productType: new FormControl
     })
+
+    this.parentForm.controls['productFamily'].setValue(1)
+    this.parentForm.controls['productType'].setValue(1)
 
     this.productFamilies = await this.menuService.getProductFamilies()
   }
