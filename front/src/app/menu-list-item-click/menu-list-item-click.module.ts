@@ -10,6 +10,9 @@ import { MenuListItemClickComponent } from './menu-list-item-click.component';
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    MenuListItemClickComponent
   ]
 })
 export class MenuListItemClickModule { }

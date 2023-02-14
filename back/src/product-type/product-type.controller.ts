@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
-import { ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiBody, ApiOperation, ApiParam, ApiResponse } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CreateProductTypeDto } from './dto/create-product-type.dto';
 import { UpdateProductTypeDto } from './dto/update-product-type.dto';
@@ -40,6 +40,11 @@ export class ProductTypeController {
         description: 'Product-type fetched succesfully',
         type: ProductType,
       })
+    @ApiParam({
+    name: 'id',
+    description: 'The id of the product-type to retrieve',
+    type: 'number',
+    })
     @Get(':id')
     async getProductTypeById(@Param() params): Promise<ProductType> {
         return await this.productTypeService.getProductTypeById(params.id)
@@ -51,6 +56,12 @@ export class ProductTypeController {
         description: 'Product-type updated succesfully',
         type: ProductType,
       })
+    @ApiParam({
+        name: 'id',
+        description: 'The id of the product-type to update',
+        type: 'number',
+    })
+    @ApiBody({type: UpdateProductTypeDto})
     @UseGuards(JwtAuthGuard)
     @Patch(':id')
     async updateProductTypeById(@Param() params, @Body() updateProductType: UpdateProductTypeDto): Promise<ProductType> {
@@ -58,6 +69,11 @@ export class ProductTypeController {
     }
 
     @ApiOperation({ summary: "Delete single product-type by id"})
+    @ApiParam({
+        name: 'id',
+        description: 'The id of the product-type to delete',
+        type: 'number',
+    })
     @ApiResponse({
         status: 200,
         description: 'Product-type deleted succesfully'
