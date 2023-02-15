@@ -1,39 +1,70 @@
-<form action="{{API_URL}}/packets" method="post">
-    <table>
-        <tr>
-            <td>Name</td>
-            <td>
-                <input type="text">
-            </td>
-        </tr>
-        <tr>
-            <td>Description</td>
-            <td>
-                <input type="text">
-            </td>
-        </tr>
-        <tr>
-            <td>Version</td>
-            <td>
-                <input type="text">
-            </td>
-        </tr>
-        <tr>
-            <td>Type</td>
-            <td>
-                <input type="text">
-            </td>
-        </tr>
-        <tr>
-            <td>Packet</td>
-            <td>
-                <input type="file">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="submit">
-            </td>
-        </tr>
-    </table>
-</form>
+<mat-card class="upload-card centeredContent" color="lightGrey">
+    <mat-card-header>
+        <mat-card-title>Upload Form</mat-card-title>
+        <mat-card-subtitle>New Packet</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+
+        <form [formGroup]="uploadFormGroup" (ngSubmit)="submit()">
+            <p>
+                <mat-form-field appearance="fill">
+                    <mat-label>Name</mat-label>
+                    <input formControlName="packetName" matInput>
+                </mat-form-field>
+            </p>
+
+            <p>
+                
+                <mat-form-field appearance="fill">
+                    <mat-label>Version</mat-label>
+                    <input formControlName="packetVersion" matInput>
+                </mat-form-field>
+            </p>
+            
+            <p>
+                <mat-form-field appearance="fill">
+                    <mat-label>Product Type</mat-label>
+                    <mat-select formControlName="packetProductType">
+                        <mat-option>-- None --</mat-option>
+                        <mat-optgroup *ngFor="let productFamily of productFamilies" [label]="productFamily.name">
+                            <mat-option *ngFor="let productType of productFamily.productType" [value]="productType.name">
+                                {{productType.name}}
+                            </mat-option>
+                        </mat-optgroup>
+                    </mat-select>
+                </mat-form-field>
+            </p>
+
+            <p>
+                
+                <mat-form-field appearance="fill">
+                    <mat-label>Description</mat-label>
+                    <textarea formControlName="packetDescription" matInput></textarea>
+                </mat-form-field>
+            </p>
+            
+
+            <div>
+
+                <input formControlName="packetFile" type="file" class="file-input" (change)="onFileSelected($event)" #fileUpload>
+                
+                <div class="file-upload">
+                    
+                    {{fileName || "No file selected yet."}}
+                    
+                    <button type="button" mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
+                    <mat-icon>attach_file</mat-icon>
+                    </button>
+                </div>
+            </div>
+            
+            
+            
+            
+            <mat-card-actions class="card-buttons">
+                <button type="submit" mat-flat-button color="primary">Submit</button>
+                <button  mat-flat-button color="white">Cancel</button>
+            </mat-card-actions>
+        </form>
+    </mat-card-content>
+</mat-card>

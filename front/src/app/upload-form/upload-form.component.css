@@ -1,0 +1,18 @@
+.upload-card {
+    display: flexbox;
+    flex-direction: column;
+
+}
+
+.file-input {
+    display: none;
+}
+
+.file-upload {
+    line-height: 40px;
+}
+
+.card-buttons {
+    display: flexbox;
+    justify-content: space-around;
+}

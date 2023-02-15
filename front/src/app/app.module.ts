@@ -13,7 +13,9 @@ import { ProductTypeMenuModule } from "./product-type-menu/product-type-menu.mod
 import { HttpClientModule } from '@angular/common/http';
 import { PacketListComponent } from './packet-list/packet-list.component';
 import { PacketComponent } from './packet/packet.component';
-import { UploadFormComponent } from './upload-form/upload-form.component';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UploadFormModule } from './upload-form/upload-form.module';
 
 @NgModule({
     declarations: [
@@ -24,16 +26,17 @@ import { UploadFormComponent } from './upload-form/upload-form.component';
         MenuComponent,
         PacketListComponent,
         PacketComponent,
-    UploadFormComponent
     ],
     providers: [],
     bootstrap: [AppComponent],
     imports: [
+        BrowserAnimationsModule,
         BrowserModule,
         AppRoutingModule,
         MaterialModule,
         ProductTypeMenuModule,
-        HttpClientModule
+        HttpClientModule,
+        UploadFormModule
     ]
 })
 export class AppModule { }
