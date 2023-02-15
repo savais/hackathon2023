@@ -16,12 +16,6 @@ export class ProductTypeMenuComponent implements OnInit {
     if(event.value !== this.parentForm.controls['productType'].value) {
       this.parentForm.controls['productType'].setValue(event.value)
     }
-
-    // if(event.value !== this.parentForm.controls['productFamily'].value) {
-    //   let data = await (await fetch("localhost:3000/product-families/"+event.value)).json()
-    //   this.productTypes = data.productTypes
-    //   console.log(data)
-    // }
   }
 
   async ngOnInit(): Promise<void> {

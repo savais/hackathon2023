@@ -26,9 +26,6 @@ export class MenuComponent implements OnInit {
       this.productTypes = this.productFamilies.find(x => x.id == event.value).productType
     }
 
-    if(event.value !== this.parentForm.controls['productType'].value) {
-      this.packets = await this.menuService.getPackets(event.value)
-    }
   }
 
   async ngOnInit(): Promise<void> {
@@ -37,10 +34,10 @@ export class MenuComponent implements OnInit {
       productType: new FormControl
     })
 
-    // this.parentForm.controls['productFamily'].setValue(1)
-    // this.parentForm.controls['productType'].setValue(1)
-
     this.productFamilies = await this.menuService.getProductFamilies()
-    // this.packets = await this.menuService.getPackets(1)
+
+    this.parentForm.controls['productType'].valueChanges.subscribe((value) => {
+      this.packets = this.productTypes.find(x => x.id == value).packets
+    })
   }
 }
