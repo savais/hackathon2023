@@ -16,6 +16,8 @@ import { PacketComponent } from './packet/packet.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UploadFormModule } from './upload-form/upload-form.module';
+import { LoginModule } from './login/login.module';
+import { AppService } from './app.service';
 
 @NgModule({
     declarations: [
@@ -25,9 +27,9 @@ import { UploadFormModule } from './upload-form/upload-form.module';
         FooterComponent,
         MenuComponent,
         PacketListComponent,
-        PacketComponent,
+        PacketComponent
     ],
-    providers: [],
+    providers: [AppService],
     bootstrap: [AppComponent],
     imports: [
         BrowserAnimationsModule,
@@ -36,7 +38,8 @@ import { UploadFormModule } from './upload-form/upload-form.module';
         MaterialModule,
         ProductTypeMenuModule,
         HttpClientModule,
-        UploadFormModule
+        UploadFormModule,
+        LoginModule
     ]
 })
 export class AppModule { }

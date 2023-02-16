@@ -7,6 +7,10 @@
       src="/assets/Kemppi_brand_mark_RGB.png"
     />
   </a>
-    <span>{{message}}</span>
-    <a routerLink="/upload-form">Upload Packet <mat-icon>file_upload</mat-icon></a>
+    <a class="app-title" routerLink="/"><span>{{message}}</span></a>
+    <div class="inline">
+        <a *ngIf="!loggedIn" routerLink="/login">Login<mat-icon class="icon">login</mat-icon></a>
+        <a *ngIf="loggedIn" routerLink="/login" [queryParams]="{logout: true}">logout<mat-icon class="icon">logout</mat-icon></a>
+      <a *ngIf="loggedIn" routerLink="/upload-form">Upload Packet <mat-icon class="icon">file_upload</mat-icon></a>
+    </div>
 </div>

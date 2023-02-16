@@ -4,6 +4,7 @@
       <svg matChipAvatar  height="1" width="1"></svg> 
       <mat-chip-option leadingIcon="none" color="primary"  *ngFor="let productFamily of productFamilies" value={{productFamily.id}}>{{productFamily.name}}</mat-chip-option>
   </mat-chip-listbox>
-</div>
+
 <app-product-type-menu [parentForm]="parentForm" [productTypes]="productTypes"></app-product-type-menu>
 <app-packet-list [packets]="packets"></app-packet-list>
+</div>

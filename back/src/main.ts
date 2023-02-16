@@ -28,7 +28,13 @@ async function bootstrap() {
   
   app.useGlobalPipes(new ValidationPipe());
 
-  app.enableCors();
+  app.enableCors({
+    "origin": "http://localhost:4200",
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "preflightContinue": false,
+    "optionsSuccessStatus": 204,
+    "credentials": true
+  });
   
   await app.listen(getEnv("PORT"));
 }

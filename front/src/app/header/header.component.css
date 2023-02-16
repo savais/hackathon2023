@@ -17,10 +17,13 @@
     margin: 0 16px;
   }
 
+  a span {
+    color: #FFF;
+  }
+
   a {
     color: #FFF;
     text-decoration: none;
-    padding-right: 1%;
   }
 
   a:visited {
@@ -30,3 +33,24 @@
   a:hover, a:active {
     color: #F57300
   }
+
+  .mat-icon {
+    vertical-align: middle;
+    
+  }
+
+  .inline {
+    display: flex;
+    width: fit-content;
+    justify-content: space-around;
+    align-content: space-around;
+    direction: rtl;
+    padding-right: 10px;
+    min-width: fit-content;
+  }
+
+  .inline a {
+    margin: 10% 0;
+    padding-right: 10px;
+  }
+
